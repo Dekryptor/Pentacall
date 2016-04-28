@@ -22,14 +22,13 @@ window.addEventListener("load",function() {
             if(ack){
                 //We got in.
                 console.log("Gotcha");
-                var profiles = JSON.parse(msg);
-                var selector = Object.keys(profiles)[0];
+                var user = msg;
                 
                 //Lets Prepare the UI:
                 var controller = document.querySelector("user-card");
-                controller.name=profiles[selector].name;
-                controller.level=profiles[selector].summonerLevel;
-                controller.icon=profiles[selector].profileIconId;
+                controller.name=user.name;
+                controller.level=user.summonerLevel;
+                controller.icon=user.profileIconId;
                               
                 document.querySelector("#stateRouter").selected=1; // Switch to the other State
             }
@@ -41,7 +40,7 @@ window.addEventListener("load",function() {
     
     socket.on("mateFound",function(data) {
         //We got another Member so, lets call Him
-        
+        console.log(data);
     });
     
     

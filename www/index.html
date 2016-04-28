@@ -19,9 +19,12 @@
         <link rel="import" href="/bower_components/iron-pages/iron-pages.html">
         <link rel="import" href="/components/user-card/user-card.html">
         <link rel="import" href="/components/mate-card/mate-card.html">
+        <link rel="import" href="/components/point-canvas/point-canvas.html">
     </head>
     <body>
+    <point-canvas dot-amount="60" point-size="0" dot-color="white" line-distance="100" attraction="4000"></point-canvas>
         <div class="container">
+
            <iron-pages selected='0' id="stateRouter">
             <div id="loginState">
                 <!--State 1 : Login -->

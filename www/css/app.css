@@ -1,6 +1,6 @@
-body{
+html, body{
     margin:none;
-    background:black;
+    background:transparent;
     color: white;
     display: flex;
     justify-content: center;
@@ -20,4 +20,13 @@ body{
 
 #CallView mate-card{
     margin: 5px;
+}
+
+point-canvas{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
 }
