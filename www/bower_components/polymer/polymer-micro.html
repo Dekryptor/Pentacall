@@ -297,9 +297,9 @@ DomModule.prototype = Object.create(HTMLElement.prototype);
 Polymer.Base.extend(DomModule.prototype, {
 constructor: DomModule,
 createdCallback: function () {
-this.register();
+this.handle();
 },
-register: function (id) {
+handle: function (id) {
 id = id || this.id || this.getAttribute('name') || this.getAttribute('is');
 if (id) {
 this.id = id;

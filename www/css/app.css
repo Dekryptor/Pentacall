@@ -12,6 +12,37 @@ html, body{
     max-width: 500px;    
 }
 
+#loginState img{
+    width: 100%;
+}
+
+#loginState form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#loginState paper-dropdown-menu{     width: 30%; min-width: 100px;}
+
+#loginState div{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+#loginState div *{
+    margin: 0px 4px;
+}
+
+#loginState paper-button{
+    --paper-button-ink-color: white;
+    background-color: rgba(0, 77, 139, 0.63);
+    width: 70%;
+    margin-top: 20px;
+}
+
+
+
 #CallView{
     display: flex;
     flex-wrap: wrap;
@@ -29,4 +60,5 @@ point-canvas{
     width: 100vw;
     height: 100vh;
     z-index: -1;
+    -webkit-filter: blur(3px);
 }

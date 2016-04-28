@@ -825,7 +825,7 @@ node.removeEventListener(dep, this.handleNative);
 }
 node.removeEventListener(evType, handler);
 },
-register: function (recog) {
+handle: function (recog) {
 this.recognizers.push(recog);
 for (var i = 0; i < recog.emits.length; i++) {
 this.gestures[recog.emits[i]] = recog;
@@ -869,7 +869,7 @@ recognizer.info.prevent = true;
 }
 }
 };
-Gestures.register({
+Gestures.handle({
 name: 'downup',
 deps: [
 'mousedown',
@@ -935,7 +935,7 @@ return Gestures.prevent(e);
 });
 }
 });
-Gestures.register({
+Gestures.handle({
 name: 'track',
 touchAction: 'none',
 deps: [
@@ -1085,7 +1085,7 @@ return Gestures.deepTargetFind(touch.clientX, touch.clientY);
 });
 }
 });
-Gestures.register({
+Gestures.handle({
 name: 'tap',
 deps: [
 'mousedown',

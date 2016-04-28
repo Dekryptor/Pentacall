@@ -9,12 +9,12 @@ window.addEventListener("load",function() {
         d= peer;
     
     document.querySelector("paper-button").addEventListener("click",function(e) {
-        //Enter Button Clicked, so lets register
+        //Enter Button Clicked, so lets handle
         var server = document.querySelectorAll("#loginForm paper-input")[0].value.toLowerCase();
         var name = document.querySelectorAll("#loginForm paper-input")[1].value;
         
         var registerBlob={server:server,summonerName:name,callID:d.id};
-        socket.emit("register",registerBlob,onRegisterResponse); 
+        socket.emit("register",registerBlob,onRegisterResponse);
     });
     
     function onRegisterResponse(ack,msg){

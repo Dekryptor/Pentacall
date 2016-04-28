@@ -28,10 +28,11 @@
            <iron-pages selected='0' id="stateRouter">
             <div id="loginState">
                 <!--State 1 : Login -->
-                <h1>Rift Calling System</h1>
+                <img src="img/pentacall.png" alt="Pentacall" role="heading">
                 <form id="loginForm">
-                    <paper-dropdown-menu label="Server" name="page_parent" class="md">
-                        <paper-listbox class="dropdown-content" selected="2">
+                    <div>
+                        <paper-dropdown-menu label="Server" name="page_parent" class="md">
+                            <paper-listbox class="dropdown-content" selected="2">
                                 <paper-item >BR</paper-item>
                                 <paper-item >EUNE</paper-item>
                                 <paper-item >EUW</paper-item>
@@ -43,9 +44,11 @@
                                 <paper-item >OCE</paper-item>
                                 <paper-item >RU</paper-item>
                                 <paper-item >TR</paper-item>
-                        </paper-listbox>
-                    </paper-dropdown-menu>
-                    <paper-input label="SummonerName"></paper-input>
+                            </paper-listbox>
+                        </paper-dropdown-menu>
+                        <paper-input label="SummonerName"></paper-input>
+
+                    </div>
                     <paper-button>Connect</paper-button> 
                 </form>
             </div>

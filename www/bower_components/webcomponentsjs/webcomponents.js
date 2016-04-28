@@ -46,11 +46,11 @@
   } else {
     flags.shadow = flags.shadow || !HTMLElement.prototype.createShadowRoot;
   }
-  if (flags.register) {
+  if (flags.handle) {
     window.CustomElements = window.CustomElements || {
       flags: {}
     };
-    window.CustomElements.flags.register = flags.register;
+    window.CustomElements.flags.handle = flags.handle;
   }
   WebComponents.flags = flags;
 })();
@@ -6592,7 +6592,7 @@ window.CustomElements = window.CustomElements || {
   scope.initializeModules = initializeModules;
   scope.hasNative = Boolean(document.registerElement);
   scope.isIE = /Trident/.test(navigator.userAgent);
-  scope.useNative = !flags.register && scope.hasNative && !window.ShadowDOMPolyfill && (!window.HTMLImports || window.HTMLImports.useNative);
+  scope.useNative = !flags.handle && scope.hasNative && !window.ShadowDOMPolyfill && (!window.HTMLImports || window.HTMLImports.useNative);
 })(window.CustomElements);
 
 window.CustomElements.addModule(function(scope) {
@@ -7112,7 +7112,7 @@ window.CustomElements.addModule(function(scope) {
   scope.instanceof = isInstance;
   scope.reservedTagList = reservedTagList;
   scope.getRegisteredDefinition = getRegisteredDefinition;
-  document.register = document.registerElement;
+  document.handle = document.registerElement;
 });
 
 (function(scope) {
