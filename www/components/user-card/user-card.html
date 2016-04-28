@@ -1,0 +1,102 @@
+<dom-module id="user-card">
+    <template>
+        <div id="card">
+            <div id="background">
+                     <div>
+                         <h1>{{name}}</h1>
+                         <p>{{level}}</p>
+                     </div>
+                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{icon}}.png">
+   
+            </div>
+            <div id="controls">
+               
+            <paper-icon-button on-tap="micTapped" src="mic_black.png" title="heart"></paper-icon-button>
+            <paper-icon-button on-tap="volTapped" src="volume_up.png" alt="octocat" title="octocat"></paper-icon-button>
+            <paper-icon-button on-tap="close" src="close_black.png"></paper-icon-button>
+            </div>
+        </div>
+    
+    
+    
+    
+    <style>
+        
+        
+        img{
+                width: 100%;
+                     /* background: black; */
+                -webkit-filter: brightness(0.9) blur(5px);
+                box-shadow: inset 0px 0px 145px -2px rgba(0,0,0,0.75);
+        }
+        
+        #controls{
+                padding: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: #F7F7F7;
+        }
+        #background{
+               max-height: 150px;
+               overflow: hidden; 
+        }
+        #background div{
+            position: absolute;
+                z-index: 1; 
+                color: white;
+                padding: 2%;
+        }
+        #background *{color:white;}
+        
+       #card{
+           background: white; 
+           width: 410px;
+       }
+       *{
+           color: black;
+       }
+    </style>
+    </template>
+    <script type="text/javascript">
+    Polymer({
+    is:"user-card",
+    propertys:{
+        level:Number,
+        name:String,
+        icon:String,
+        Volume:{type:Boolean,notify:true},
+        Mic:{type:Boolean,notify:true}
+    },
+    
+    created:function(){
+        this.Mic=true;
+        this.Volume=true;
+    },
+    
+    volTapped:function(e){
+        this.Volume=!this.Volume;
+        if(this.Volume){
+            e.currentTarget.src="/components/user-card/volume_up.png";
+        }else{
+            e.currentTarget.src="/components/user-card/mute_black.png";
+        }
+        
+    },
+    close:function(){
+        this.fire("close",true);
+    },
+    micTapped:function(e){
+        this.Mic=!this.Mic;
+        if(this.Mic){
+            e.currentTarget.src="/components/user-card/mic_black.png";
+        }else{
+            e.currentTarget.src="/components/user-card/mic_off.png";
+        }
+        
+    }
+
+
+});
+</script>
+</dom-module>

@@ -1,0 +1,23 @@
+body{
+    margin:none;
+    background:black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    width: 70vw;
+    max-width: 500px;    
+}
+
+#CallView{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#CallView mate-card{
+    margin: 5px;
+}

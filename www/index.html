@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Rift Calling System</title>
+        
+        <script src="/bower_components/peerjs/peer.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/app.js"></script>
+        
+        <link rel="stylesheet" href="/css/app.css">
+        <link rel="import" href="/css/dark-side.html">
+        <!--Components  -->
+        <link rel="import" href="/bower_components/paper-input/paper-input.html">
+        <link rel="import" href="/bower_components/paper-card/paper-card.html">
+        <link rel="import" href="/bower_components/paper-button/paper-button.html">
+        <link rel="import" href="/bower_components/paper-listbox/paper-listbox.html">
+        <link rel="import" href="/bower_components/paper-item/paper-item.html">
+        <link rel="import" href="/bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+        <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+        <link rel="import" href="/bower_components/iron-pages/iron-pages.html">
+        <link rel="import" href="/components/user-card/user-card.html">
+        <link rel="import" href="/components/mate-card/mate-card.html">
+    </head>
+    <body>
+        <div class="container">
+           <iron-pages selected='0' id="stateRouter">
+            <div id="loginState">
+                <!--State 1 : Login -->
+                <h1>Rift Calling System</h1>
+                <form id="loginForm">
+                    <paper-dropdown-menu label="Server" name="page_parent" class="md">
+                        <paper-listbox class="dropdown-content" selected="2">
+                                <paper-item >BR</paper-item>
+                                <paper-item >EUNE</paper-item>
+                                <paper-item >EUW</paper-item>
+                                <paper-item >JP</paper-item>
+                                <paper-item >KR</paper-item>
+                                <paper-item >LAN</paper-item>
+                                <paper-item >LAS</paper-item>
+                                <paper-item >NA</paper-item>
+                                <paper-item >OCE</paper-item>
+                                <paper-item >RU</paper-item>
+                                <paper-item >TR</paper-item>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                    <paper-input label="SummonerName"></paper-input>
+                    <paper-button>Connect</paper-button> 
+                </form>
+            </div>
+<!-- ###########################################################################################################-->  
+           <div id="CallView">
+               <!--State 2 : Call / Group View -->
+               <user-card level="30" name="annFishman" icon="588"></user-card>
+               <mate-card champion="Ekko" username="ContainerClaus"></mate-card>
+               <mate-card champion="Vladimir" username="Tikone"></mate-card>
+               <mate-card champion="Warwick" username="TryWeedDontCheat"></mate-card>
+               <mate-card champion="Azir" username="IIIIIIIIII"></mate-card>
+               
+           </div>
+             
+           </iron-pages>
+        </div>
+   
+    </body>
+</html>

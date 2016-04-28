@@ -1,0 +1,95 @@
+<dom-module id="mate-card">
+   <template>
+        <div id="card">
+            <div id="background">
+                     <div>
+                         <p>{{username}}</p>
+                     </div>
+                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/champion/{{champion}}.png">
+   
+            </div>
+            <div id="controls">               
+                <paper-icon-button on-tap="volTapped" src="volume_up.png" alt="mute" title="mute"></paper-icon-button>
+            </div>
+        </div>
+        <audio id="player" src="{{stream}}"></audio>
+    
+    
+    
+    
+    <style>
+        
+        
+        img{
+                width: 100%;
+                -webkit-filter: brightness(0.9);
+        }
+        
+        #controls{
+              
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #F7F7F7;
+        }
+        #background{
+               max-height: 150px;
+               overflow: hidden; 
+        }
+        #background div{
+            position: absolute;
+                z-index: 1; 
+                color: white;
+                padding: 2%;
+        }
+        #background *{color:white;}
+        
+       #card{
+           background: white;
+           width: 200px;
+           height: 190px;
+           overflow: hidden; 
+       }
+       *{
+           color: black;
+       }
+    </style>
+    </template>
+    
+  
+    <script>
+        Polymer({
+            is:"mate-card",
+            
+            propertys:{
+                username:{type:"String",notify:true},
+                champion:String,
+                Volume:Boolean,
+                stream:String
+             
+            },
+            
+             created:function(){
+                this.Mic=true;
+                this.Volume=true;
+            },
+            
+            
+            volTapped:function(e){
+                this.Volume=!this.Volume;
+                if(this.Volume){
+                    this.$.player.muted=false;
+                    e.currentTarget.src="/components/mate-card/volume_up.png";
+                }else{
+                    this.$.player.muted=true;
+                    e.currentTarget.src="/components/mate-card/mute_black.png";
+                }
+        
+            },
+            
+        });
+        
+        
+    </script>
+    </dom-module>
+
