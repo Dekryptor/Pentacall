@@ -10,7 +10,7 @@ Sebastian Streich
 var express = require("express");
 var fs = require("fs")
 var peerProvider = require('peer').ExpressPeerServer;
-var callBroker = require("./lib/callBroker.js")
+var callBroker = require("./lib/SocketHandler.js")
 
 var app = express();
 
@@ -33,5 +33,5 @@ var server = app.listen(3000);
     //Initialise the socket IO Instance 
     var io      = require("socket.io")(server);
     io.on("connection",function(socket) {
-        callBroker.register(socket);
+        callBroker.handle(socket);
     });
