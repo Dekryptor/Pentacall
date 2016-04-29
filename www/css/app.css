@@ -12,9 +12,28 @@ html, body{
     max-width: 500px;    
 }
 
+#boot{
+    display: flex;
+    flex-direction: column;
+}
+
+#boot *{
+    transition: all 0.5s;
+    text-align: center;
+}
+#boot .hidden{
+    opacity: 0;
+}
+#boot img{
+    width: 100%;
+}
+
+
+
 #loginState img{
     width: 100%;
 }
+
 
 #loginState form{
     display: flex;
@@ -36,7 +55,7 @@ html, body{
 
 #loginState paper-button{
     --paper-button-ink-color: white;
-    background-color: rgba(0, 77, 139, 0.63);
+    background-color: rgb(14, 14, 14);
     width: 70%;
     margin-top: 20px;
 }
@@ -60,5 +79,5 @@ point-canvas{
     width: 100vw;
     height: 100vh;
     z-index: -1;
-    -webkit-filter: blur(3px);
+    -webkit-filter: blur(3px) brightness(0.5);
 }
