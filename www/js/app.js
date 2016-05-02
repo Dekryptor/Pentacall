@@ -8,8 +8,10 @@ window.addEventListener("load",function() {
 
     var pages = document.querySelector("iron-pages");
 
+    var ownUserData;
+
     async.waterfall([
-        function (doneCallback) {
+        function (bootDone) {
             //Stage 0: Check and Bootup
             var root    = document.querySelector("#boot");
             var heading = root.querySelector("h1");
@@ -71,15 +73,15 @@ window.addEventListener("load",function() {
                 }else{
                     //No Errors, so we're good to go! <3
                     console.log("All checks done. We're ready to rumble.");
-                    pages.selected++;
-                    doneCallback(null);
+                    bootDone(null);
                 }
             });
 
 
 
         },
-        function (doneCallback) {
+        function (loginDone) {
+            pages.selected++; // Go the Login Page
             //Stage 1 Login:
             var root = document.querySelector("#loginState");
 
@@ -119,7 +121,7 @@ window.addEventListener("load",function() {
                     localStorage.setItem("summonerName",name);
                     localStorage.setItem("region",serverField.selected);
                     connectButton.removeEventListener("click",buttonClick);
-                    doneCallback(null,msg);
+                    loginDone(null,msg);
                 }
                 else {
                     validationError(msg);
@@ -130,9 +132,21 @@ window.addEventListener("load",function() {
 
         },
 
-        function (User) {
-            //Stage 2:
+        function (User,CallEnded) {
+            //Stage 2: User Has Logged in
+            pages.selected++; //Go to the User Page
+            var root = document.querySelector("#CallView");
+            var UserCard = document.createElement("user-card");
+            ownUserData= User;
+            UserCard.name = User.name;
+            UserCard.level = User.summonerLevel;
+            UserCard.icon = User.profileIconId;
 
+            // Object {id: 81385112, name: "annFishman", profileIconId: 10, summonerLevel: 30, revisionDate: 1462124849000}
+
+            root.innerHTML="";
+            UserCard.setAttribute("class","animated zoomIn");
+            root.appendChild(UserCard);
 
 
 
@@ -142,11 +156,44 @@ window.addEventListener("load",function() {
 
     //Enable Protocoll Awareness:
 
-    socket.on("mateFound",function () {
+    peer.on('call',  function(call) {
+        //We've been Called
+        call.answer(mediaStream);
+        var root = document.querySelector("#CallView");
+        var mateCard = document.createElement("mate-card");
+        mateCard.champion = call.metadata.champion;
+        mateCard.username = call.metadata.summonerName;
+        root.appendChild(mateCard);
+        call.on('stream', function (remoteStream) {handleIncomingStream(call,remoteStream,mateCard);})
+    });
+
+    socket.on("mateFound",function (mateArray) {
+        //We got an Array of Teammates, so Well. Lets add them to The Canvas.
+        if(ownUserData==undefined) return;
+        //We're logged in.
+        var root = document.querySelector("#CallView");
+
+        mateArray.forEach(function (e,i,a) {
+            if(e.callID == peer.id)return;
+            var call = peer.call(e.callID, mediaStream,{metadata:ownUserData});
+            var mateCard = document.createElement("mate-card");
+            call.on('stream', function (remoteStream) {handleIncomingStream(call,remoteStream,mateCard);});
+            mateCard.champion = e.champion;
+            mateCard.username = e.summonerName;
+            root.appendChild(mateCard);
+        });
 
     });
 
 
+
+
+
+    function handleIncomingStream(call,stream,mateCard) {
+        //We got it all together now.
+        mateCard.src = URL.createObjectURL(stream);
+
+    }
 
 
 
