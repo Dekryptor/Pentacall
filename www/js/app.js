@@ -136,7 +136,7 @@ window.addEventListener("load",function() {
         function (User,CallEnded) {
             //Stage 2: User Has Logged in
             pages.selected++; //Go to the User Page
-            var root = document.querySelector("#CallView");
+            var root = document.querySelector("#CallView .stuffholder");
             var UserCard = document.createElement("user-card");
             ownUserData= User;
             UserCard.name = User.name;
@@ -168,7 +168,7 @@ window.addEventListener("load",function() {
         }else{
             call.answer(null);
         }
-        var root = document.querySelector("#CallView");
+        var root = document.querySelector("#CallView .stuffholder");
         var mateCard = document.createElement("mate-card");
         mateCard.bindToCall(call);
         root.appendChild(mateCard);
@@ -183,7 +183,6 @@ window.addEventListener("load",function() {
         //We got an Array of Teammates, so Well. Lets add them to The Canvas.
         if(ownUserData==undefined) return;
         //We're logged in.
-        var root = document.querySelector("#CallView");
 
         mateArray.forEach(function (e,i,a) {
             if(e.callID == peer.id)return;
@@ -194,10 +193,7 @@ window.addEventListener("load",function() {
 
             }else{
                 console.log("[Info] Going to Call somebody");
-                var call = peer.call(e.callID, mediaStream,{metadata:ownUserData});
-               // var mateCard = document.createElement("mate-card");
-               // mateCard.bindToCall(call);
-               // root.appendChild(mateCard);
+                peer.call(e.callID, mediaStream,{metadata:ownUserData});
             }
 
 
