@@ -1,8 +1,8 @@
 var d;
 var s;
 window.addEventListener("load",function() {
-    var socket = io();
-    var peer = new Peer(null, {host: "localhost", port: "3000", path: "/voip", debug: 3});
+    var socket = io("pentacall.me:61982");
+    var peer = new Peer(null, {host: "pentacall.me", port: "61982", path: "/voip", debug: 3});
     var toast = document.querySelector("paper-toast");
     var mediaStream;
 
