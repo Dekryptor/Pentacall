@@ -87,11 +87,6 @@
         
             },
 
-            setStream:function (url) {
-                //sets the Stream and Makes it Start
-                this.$.player.src=url;
-                this.$.player.play();
-            },
             
             
             bindToCall:function (call) {
@@ -100,11 +95,16 @@
                 this.username = call.metadata.name;
                 this.level = call.metadata.summonerLevel;
                 call.on('stream', function (remoteStream) {
-                    console.log("We got a Media stream");
-                    me.setStream(URL.createObjectURL(remoteStream));
+                    //Put this into the Intigrated
+                    var url = URL.createObjectURL(remoteStream);
+                    me.$.player.src=url;
+                    me.$.player.play();
                 });
 
-                
+                call.on("close",function () {
+
+                   document.removeChild(me);
+                });
             }
             
             
