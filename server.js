@@ -21,7 +21,7 @@ var config = JSON.parse(fs.readFileSync("config.json",{encoding:"utf-8"}));
 
 // Lets Initialise the static HTTP Server, pretty boring
 app.use(express.static('www'));
-var server = app.listen(3000);
+var server = app.listen(config.port);
 
  /*
  In this APP Peer.js only Handles Interconnecting the VOIP Clients, 
