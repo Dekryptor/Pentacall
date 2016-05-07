@@ -79,3 +79,6 @@ $RECYCLE.BIN/
 *.lnk
 config.json
 .idea/workspace.xml
+.idea/*
+
+.idea/workspace.xml
