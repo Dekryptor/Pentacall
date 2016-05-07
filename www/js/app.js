@@ -161,8 +161,9 @@ window.addEventListener("load",function() {
         call.answer(mediaStream);
         var root = document.querySelector("#CallView");
         var mateCard = document.createElement("mate-card");
-        mateCard.champion = call.metadata.champion;
-        mateCard.username = call.metadata.summonerName;
+        mateCard.champion = call.metadata.profileIconId;
+        mateCard.username = call.metadata.name;
+        mateCard.level = call.metadata.summonerLevel;
         root.appendChild(mateCard);
         call.on('stream', function (remoteStream) {handleIncomingStream(call,remoteStream,mateCard);})
     });
@@ -177,7 +178,9 @@ window.addEventListener("load",function() {
             if(e.callID == peer.id)return;
             var call = peer.call(e.callID, mediaStream,{metadata:ownUserData});
             var mateCard = document.createElement("mate-card");
-            call.on('stream', function (remoteStream) {handleIncomingStream(call,remoteStream,mateCard);});
+            call.on('stream', function (remoteStream) {
+                handleIncomingStream(call,remoteStream,mateCard);
+            });
             mateCard.champion = e.champion;
             mateCard.username = e.summonerName;
             root.appendChild(mateCard);
@@ -191,7 +194,7 @@ window.addEventListener("load",function() {
 
     function handleIncomingStream(call,stream,mateCard) {
         //We got it all together now.
-        mateCard.src = URL.createObjectURL(stream);
+        mateCard.setStream(URL.createObjectURL(stream));
 
     }
 

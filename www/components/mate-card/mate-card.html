@@ -86,7 +86,12 @@
                 }
         
             },
-            
+
+            setStream:function (url) {
+                //sets the Stream and Makes it Start
+                this.$.player.src=url;
+                this.$.player.play();
+            }
         });
         
         
