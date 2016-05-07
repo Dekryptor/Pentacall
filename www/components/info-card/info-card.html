@@ -1,0 +1,44 @@
+<dom-module id="info-card">
+    <template>
+            <p id="text"></p>
+
+
+
+        <style>
+
+            *{
+                color: white;
+                padding: 25px;
+                line-height: 2;
+                text-align: center;
+
+            }
+        </style>
+    </template>
+
+
+    <script>
+        Polymer({
+            is:"info-card",
+
+            propertys:{},
+
+            created:function(){},
+
+            update:function (msg) {
+                var field = this.$.text;
+                field.setAttribute("class","animated fadeOut");
+
+                window.setTimeout(function () {
+                    field.setAttribute("class","animated fadeIn");
+                    field.textContent= msg;
+                },300);
+            },
+
+            bindToSocket:function (socket) {socket.on("Status",this.update.bind(this));}
+        });
+
+
+    </script>
+</dom-module>
+

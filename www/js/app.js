@@ -8,7 +8,8 @@ window.addEventListener("load",function() {
     var mediaStream;
 
     var pages = document.querySelector("iron-pages");
-
+    var infoCard = document.querySelector("info-card");
+    infoCard.bindToSocket(socket);
     var ownUserData;
 
     async.waterfall([
