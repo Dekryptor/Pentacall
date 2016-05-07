@@ -45,4 +45,12 @@ var httpsServer = https.createServer({key: privateKey, cert: certificate},app).l
     });
 
 
-//Initialise the HTTPS Server for the Websockets.
+
+    //Make the Config Info Available for the Client
+    app.get("/api/config",function (req,res) {
+       var configObject= {
+           "hostname":config.hostname,
+           "port":config.sslPort
+       };
+        res.send("var configuration = JSON.parse('"+ JSON.stringify(configObject)+"');")
+    });
