@@ -1,11 +1,11 @@
 <dom-module id="mate-card">
    <template>
-        <div id="card">
+        <div id="card" class="animated bounceIn">
             <div id="background">
                      <div>
                          <p>{{username}}</p>
                      </div>
-                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/champion/{{champion}}.png">
+                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{champion}}.png">
    
             </div>
             <div id="controls">               
@@ -62,7 +62,7 @@
             is:"mate-card",
             
             propertys:{
-                username:{type:"String",notify:true},
+                username:{type:"String",notify:true,reflectToAttribute:true},
                 champion:String,
                 Volume:Boolean,
                 stream:String
@@ -91,7 +91,25 @@
                 //sets the Stream and Makes it Start
                 this.$.player.src=url;
                 this.$.player.play();
+            },
+            
+            
+            bindToCall:function (call) {
+                var me = this;
+                this.champion = call.metadata.profileIconId;
+                this.username = call.metadata.name;
+                this.level = call.metadata.summonerLevel;
+                call.on('stream', function (remoteStream) {
+                    console.log("We got a Media stream");
+                    me.setStream(URL.createObjectURL(remoteStream));
+                });
+
+                
             }
+            
+            
+            
+            
         });
         
         

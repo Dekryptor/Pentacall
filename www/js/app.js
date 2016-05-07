@@ -159,14 +159,24 @@ window.addEventListener("load",function() {
 
     peer.on('call',  function(call) {
         //We've been Called
-        call.answer(mediaStream);
+        console.log("[Info] Sombody has called us");
+
+        if(peer.connections[call.peer].length==1){
+            call.answer(null);
+            peer.call(call.peer,mediaStream,{metadata:ownUserData});
+
+        }else{
+            call.answer(null);
+        }
         var root = document.querySelector("#CallView");
         var mateCard = document.createElement("mate-card");
-        mateCard.champion = call.metadata.profileIconId;
-        mateCard.username = call.metadata.name;
-        mateCard.level = call.metadata.summonerLevel;
+        mateCard.bindToCall(call);
         root.appendChild(mateCard);
-        call.on('stream', function (remoteStream) {handleIncomingStream(call,remoteStream,mateCard);})
+
+
+
+
+       
     });
 
     socket.on("mateFound",function (mateArray) {
@@ -177,14 +187,20 @@ window.addEventListener("load",function() {
 
         mateArray.forEach(function (e,i,a) {
             if(e.callID == peer.id)return;
-            var call = peer.call(e.callID, mediaStream,{metadata:ownUserData});
-            var mateCard = document.createElement("mate-card");
-            call.on('stream', function (remoteStream) {
-                handleIncomingStream(call,remoteStream,mateCard);
-            });
-            mateCard.champion = e.champion;
-            mateCard.username = e.summonerName;
-            root.appendChild(mateCard);
+            if(peer.connections[e.callID]!=null){
+                //We do have a Call Already with him.
+                var mateCard = document.querySelector("mateCard['username'="+e.summonerName+"]");
+                console.log("We do have a connection double...");
+
+            }else{
+                console.log("[Info] Going to Call somebody");
+                var call = peer.call(e.callID, mediaStream,{metadata:ownUserData});
+               // var mateCard = document.createElement("mate-card");
+               // mateCard.bindToCall(call);
+               // root.appendChild(mateCard);
+            }
+
+
         });
 
     });
@@ -193,11 +209,7 @@ window.addEventListener("load",function() {
 
 
 
-    function handleIncomingStream(call,stream,mateCard) {
-        //We got it all together now.
-        mateCard.setStream(URL.createObjectURL(stream));
 
-    }
 
 
 
