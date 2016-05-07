@@ -1,0 +1,8 @@
+{
+    "riotAPIKey":"Much Secret",
+    "apiLimit":400,
+    "port":61375,
+    "sslPort":61982,
+    "sslKey": "/Full/Path/PLS",
+    "sslCert": "/Same/Here"
+}

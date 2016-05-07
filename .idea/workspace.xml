@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2057d1f5-24db-444c-b911-9a866293b771" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example-config.json" />
     </list>
     <ignored path="Rift-Calling-System.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+            <state relative-caret-position="255">
+              <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
               <folding>
                 <element signature="e#820#2695#0" expanded="false" />
                 <element signature="e#901#1150#0" expanded="false" />
@@ -61,6 +58,16 @@
                 <element signature="e#2254#2664#0" expanded="false" />
                 <element signature="e#2986#3174#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="example-config.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/example-config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -140,6 +147,7 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/example-config.json" />
       </list>
     </option>
   </component>
@@ -249,6 +257,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Basti\Documents\GitHub\Rift-Calling-System" />
       <recent name="C:\Users\Basti\Documents\GitHub\Rift-Calling-System\www\css" />
     </key>
   </component>
@@ -387,12 +396,12 @@
       <workItem from="1462205091031" duration="8824000" />
       <workItem from="1462364853734" duration="800000" />
       <workItem from="1462565896793" duration="603000" />
-      <workItem from="1462618223530" duration="6281000" />
+      <workItem from="1462618223530" duration="6397000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57649000" />
+    <option name="totallyTimeSpent" value="57765000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1253" y="107" width="1127" height="1203" extended-state="0" />
@@ -445,21 +454,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4884">
-          <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding>
-            <element signature="e#820#2695#0" expanded="false" />
-            <element signature="e#901#1150#0" expanded="false" />
-            <element signature="e#1188#1480#0" expanded="false" />
-            <element signature="e#1518#2216#0" expanded="false" />
-            <element signature="e#2254#2664#0" expanded="false" />
-            <element signature="e#2986#3174#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/components/mate-card/mate-card.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -900,8 +894,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+        <state relative-caret-position="255">
+          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
           <folding>
             <element signature="e#820#2695#0" expanded="false" />
             <element signature="e#901#1150#0" expanded="false" />
@@ -910,6 +904,14 @@
             <element signature="e#2254#2664#0" expanded="false" />
             <element signature="e#2986#3174#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example-config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
