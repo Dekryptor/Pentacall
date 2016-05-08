@@ -159,9 +159,23 @@ window.addEventListener("load",function() {
                 var mates = document.querySelectorAll("mate-card");
                 for(var i=0; i< mates.length; i++){
                     mates[i].endCall(peer);
+
+                }
+                function onRegisterResponse(sucsess, msg) {
+                    if (sucsess) {
+                        toast.text="Searching for the Next Game";
+                        toast.open();
+                    }
+                    else {
+                        toast.text=msg;
+                        toast.open();
+
+                    }
                 }
 
-               
+                //All Calles Ended so lets Put us back in the Waiting Que.
+                socket.emit("register", registerBlob,onRegisterResponse);
+
             });
 
 
