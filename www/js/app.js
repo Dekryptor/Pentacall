@@ -43,7 +43,7 @@ window.addEventListener("load",function() {
                     else{callback({heading:"We're really Sorry",text:"But it seems Like your Browser doesnt Support WebRTC, which is required."})}
                 },
                 function (callback) {
-                    if(navigator.userAgent.contains("Firefox")||navigator.userAgent.contains("Opera")){
+                    if(navigator.userAgent.includes("Firefox")||navigator.userAgent.includes("Opera")){
                         callback({heading:"Sorry for beeing in beta",text:"But at this Moment we're just not Ready for Firefox or Opera, please use Chrome :( ."})
                     }
                     else{callback(null);}
