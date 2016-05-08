@@ -1,6 +1,6 @@
 <dom-module id="point-canvas">
     <template>
-        <canvas id="can" style="background: black;">
+        <canvas id="can" style="background: black; width: 100vw; height: 100vh;">
 
         </canvas>
     </template>
@@ -41,43 +41,26 @@
 
                 var particleCount = self.dotAmount,
                         particles = [],
-                        minDist = self.lineDistance,
-                        dist;
+                        minDist = self.lineDistance;
+
 
                 function paintCanvas() {
 
                     W = window.innerWidth; H = window.innerHeight;
-                    canvas.width = W;
-                    canvas.height = H;
+                    //canvas.width = W;
+                    //canvas.height = H;
                     ctx.fillStyle = self.backgroundColor;
                     ctx.fillRect(0,0,W,H);
                 }
 
-// Now the idea is to create some particles that will attract
-// each other when they come close. We will set a minimum
-// distance for it and also draw a line when they come
-// close to each other.
 
-// The attraction can be done by increasing their velocity as
-// they reach closer to each other
-
-// Let's make a function that will act as a class for
-// our particles.
 
                 function Particle() {
-// Position them randomly on the canvas
-// Math.random() generates a random value between 0
-// and 1 so we will need to multiply that with the
-// canvas width and height.
                     this.x = Math.random() * W;
                     this.y = Math.random() * H;
 
-
-// We would also need some velocity for the particles
-// so that they can move freely across the space
                     this.vx = -1 + Math.random() * 2;
                     this.vy = -1 + Math.random() * 2;
-
 
                     this.radius = self.pointSize;
 
@@ -89,17 +72,16 @@
                     }
                 }
 
-// Time to push the particles into an array
+
                 for(var i = 0; i < particleCount; i++) {
                     particles.push(new Particle());
                 }
 
-// Function to draw everything on the canvas that we'll use when
-// animating the whole scene.
+
                 function draw() {
                     paintCanvas();
 
-// Call the function that will draw the balls using a loop
+
                     for (var i = 0; i < particles.length; i++) {
                         p = particles[i];
                         p.draw();
@@ -112,7 +94,7 @@
 
 
                     for (var i = 0; i < particles.length; i++) {
-                        p = particles[i];
+                        var p = particles[i];
 
 
                         p.x += p.vx;
@@ -120,28 +102,32 @@
 
                         if(p.x + p.radius > W){
                             p.x = p.radius;
-
-
                         }
 
                         else if(p.x - p.radius < 0) {
                             p.x = W - p.radius;
-
                         }
 
                         if(p.y + p.radius > H){
                             p.y = p.radius;
-
                         }
 
                         else if(p.y - p.radius < 0) {
                             p.y = H - p.radius;
+                        }
+                        async.each(particles,function (p2,callback) {
+                            distance(p,p2);
+                            callback
+                        });
 
-                        }
-                        for(var j = i + 1; j < particles.length; j++) {
-                            p2 = particles[j];
-                            distance(p, p2);
-                        }
+                        /*
+                         for(var j = i + 1; j < particles.length; j++) {
+                         var p2 = particles[j];
+                         distance(p, p2);
+                         }
+
+                         */
+
 
                     }
                 }
@@ -161,9 +147,12 @@
                         ctx.closePath();
                     }
                 }
-
+                var render = true;
                 function animloop() {
-                    draw();
+                    if(render){
+                        draw();
+                    }
+                   render = !render;
                     requestAnimFrame(animloop);
                 }
 
