@@ -1,3 +1,6 @@
+console.log("Please do not have the Developer tools opened while loading");
+console.log("This breaks stuff on Firefox and i have no clue why...");
+
 var d;
 var s;
 window.addEventListener("load",function() {
@@ -9,8 +12,10 @@ window.addEventListener("load",function() {
 
     var pages = document.querySelector("iron-pages");
     var infoCard = document.querySelector("info-card");
-    infoCard.bindToSocket(socket);
+    try { infoCard.bindToSocket(socket);}
+    catch (e){}
     var ownUserData;
+    var registerBlob;
 
     async.waterfall([
         function (bootDone) {
@@ -104,7 +109,7 @@ window.addEventListener("load",function() {
                 name = nameField.value;
                 if(name.length<4){validationError("Name too short");return;}
                 var server = serverField.value.toLowerCase();
-                var registerBlob = {server: server, summonerName: name, callID: peer.id};
+                registerBlob = {server: server, summonerName: name, callID: peer.id};
                 socket.emit("register", registerBlob, onRegisterResponse);
             }
 
@@ -150,6 +155,14 @@ window.addEventListener("load",function() {
             UserCard.setAttribute("class","animated zoomIn");
             root.appendChild(UserCard);
 
+            UserCard.addEventListener("close",function () {
+                var mates = document.querySelectorAll("mate-card");
+                for(var i=0; i< mates.length; i++){
+                    mates[i].endCall(peer);
+                }
+
+               
+            });
 
 
         }
