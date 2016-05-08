@@ -80,6 +80,7 @@ point-canvas{
     height: 100vh;
     z-index: -1;
     -webkit-filter: blur(3px) brightness(0.5);
+    filter:blur(3px) brightness(0.5);
 }
 
 footer{
