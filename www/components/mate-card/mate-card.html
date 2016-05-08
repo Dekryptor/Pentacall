@@ -60,12 +60,12 @@
     <script>
         Polymer({
             is:"mate-card",
-            
             propertys:{
                 username:{type:"String",notify:true,reflectToAttribute:true},
                 champion:String,
                 Volume:Boolean,
-                stream:String
+                stream:String,
+                activeCall:Object
              
             },
             
@@ -90,6 +90,7 @@
             
             
             bindToCall:function (call) {
+                this.activeCall=call;
                 var me = this;
                 this.champion = call.metadata.profileIconId;
                 this.username = call.metadata.name;
@@ -102,10 +103,19 @@
                 });
 
                 call.on("close",function () {
-
-                   document.removeChild(me);
+                    me.parentElement.removeChild(me);
                 });
+            },
+
+
+            endCall: function (peers) {
+                var openConnections = peers.connections[this.activeCall.peer];
+                for(var i=0; i<openConnections.length;i++){
+                    openConnections[i].close();
+                }
             }
+
+
             
             
             
