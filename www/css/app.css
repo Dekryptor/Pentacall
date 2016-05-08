@@ -81,3 +81,19 @@ point-canvas{
     z-index: -1;
     -webkit-filter: blur(3px) brightness(0.5);
 }
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5;
+    padding-top: 20px;
+}
+
+footer a{
+    opacity: 0.4;
+    transition: all 0.2s;
+}
+
+footer a:hover{
+    opacity: 1;
+}
