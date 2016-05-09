@@ -17,6 +17,8 @@ window.addEventListener("load",function() {
     var ownUserData;
     var registerBlob;
 
+
+
     async.waterfall([
         function (bootDone) {
             //Stage 0: Check and Bootup
@@ -204,7 +206,7 @@ window.addEventListener("load",function() {
         }
         var root = document.querySelector("#CallView .stuffholder");
         var mateCard = document.createElement("mate-card");
-        mateCard.bindToCall(call);
+        mateCard.bindToCall(call,registerBlob.server);
         root.appendChild(mateCard);
 
 
@@ -219,12 +221,16 @@ window.addEventListener("load",function() {
         //We're logged in.
 
         mateArray.forEach(function (e,i,a) {
-            if(e.callID == peer.id)return;
-            if(peer.connections[e.callID]!=null){
-                //We do have a Call Already with him.
-                var mateCard = document.querySelector("mateCard['username'="+e.summonerName+"]");
-                console.log("We do have a connection double...");
+            if(e.callID == peer.id){
+                //Thats us!
+                ownUserData.inGame = e;
+                document.querySelector("user-card").setChampPic(e.champion);
+                document.querySelector("user-card").setMastery(registerBlob.server,e.summonerId,e.championId);
 
+                return;
+            }
+            if(peer.connections[e.callID]!=null){
+                
             }else{
                 console.log("[Info] Going to Call somebody");
                 peer.call(e.callID, mediaStream,{metadata:ownUserData});

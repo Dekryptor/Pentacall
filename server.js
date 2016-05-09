@@ -12,7 +12,7 @@ var fs = require("fs")
 var peerProvider = require('peer').ExpressPeerServer;
 var callBroker = require("./lib/SocketHandler.js")
 var https = require('https');
-
+var api = require("./lib/riotAPI.js");
 
 var app = express();
 
@@ -53,4 +53,10 @@ var httpsServer = https.createServer({key: privateKey, cert: certificate},app).l
            "port":config.sslPort
        };
         res.send("var configuration = JSON.parse('"+ JSON.stringify(configObject)+"');")
+    });
+
+    app.get("/api/mastery/:server/:summoner/:champion",function (req,res) {
+        api.getChampionMastery(req.params.summoner,req.params.champion,req.params.server,function (mastery,code) {
+            res.status(code).send(mastery);
+        })
     });

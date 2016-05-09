@@ -4,8 +4,9 @@
             <div id="background">
                      <div>
                          <p>{{username}}</p>
+                         <p id="level">{{championMastery}}</p>
                      </div>
-                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{champion}}.png">
+                    <img id="bg" src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{champion}}.png">
    
             </div>
             <div id="controls">               
@@ -63,6 +64,7 @@
             propertys:{
                 username:{type:"String",notify:true,reflectToAttribute:true},
                 champion:String,
+                championMastery:String,
                 Volume:Boolean,
                 stream:String,
                 activeCall:Object
@@ -72,6 +74,9 @@
              created:function(){
                 this.Mic=true;
                 this.Volume=true;
+            },
+            setChampPic: function(champion){
+                this.$.bg.setAttribute("src","http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/"+champion+".png");
             },
             
             
@@ -89,12 +94,15 @@
 
             
             
-            bindToCall:function (call) {
+            bindToCall:function (call,region) {
                 this.activeCall=call;
                 var me = this;
                 this.champion = call.metadata.profileIconId;
                 this.username = call.metadata.name;
                 this.level = call.metadata.summonerLevel;
+                this.setChampPic(call.metadata.inGame.champion);
+                this.setMastery(region, call.metadata.inGame.summonerId,call.metadata.inGame.championId);
+
                 call.on('stream', function (remoteStream) {
                     //Put this into the Intigrated
                     var url = URL.createObjectURL(remoteStream);
@@ -113,13 +121,35 @@
                 for(var i=0; i<openConnections.length;i++){
                     openConnections[i].close();
                 }
+            },
+            setMastery:function (server,sumID,champID) {
+                var me =this;
+
+                var req = new XMLHttpRequest();
+                req.open("GET","https://pentacall.me/api/mastery/"+server+"/"+sumID+"/"+champID);
+
+                req.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status==200){
+                        try{
+                            var data = JSON.parse(this.responseText);
+                            me.championMastery= "Champion Level:  " + data.championLevel;
+
+                        }
+                        catch(e){
+
+                        }
+                    }
+                };
+                req.send();
+
             }
 
 
-            
-            
-            
-            
+
+
+
+
+
         });
         
         

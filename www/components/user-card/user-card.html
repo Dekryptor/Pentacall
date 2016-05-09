@@ -6,7 +6,7 @@
                          <h1>{{name}}</h1>
                          <p>{{level}}</p>
                      </div>
-                    <img src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{icon}}.png">
+                    <img id="bg" src="http://ddragon.leagueoflegends.com/cdn/6.8.1/img/profileicon/{{icon}}.png">
    
             </div>
             <div id="controls">
@@ -89,7 +89,34 @@
             e.currentTarget.src="/components/user-card/mic_off.png";
         }
         
-    }
+    },
+    setChampPic: function(champion){
+      this.$.bg.setAttribute("src","http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/"+champion+".png");
+    },
+
+    setMastery:function (server,sumID,champID) {
+            var me =this;
+
+            var req = new XMLHttpRequest();
+            req.open("GET","https://pentacall.me/api/mastery/"+server+"/"+sumID+"/"+champID);
+
+            req.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status==200){
+                    try{
+                        var data = JSON.parse(this.responseText);
+                        me.level= "Champion Level:  " + data.championLevel;
+
+                    }
+                    catch(e){
+
+                    }
+                }
+            };
+            req.send();
+
+        }
+
+
 
 
 });
