@@ -55,9 +55,10 @@ The backend is a Node.js app offering HTTP content, providing instant communicat
 On the Front-End, the UI is completely Created through Webcomponents. Live Data is Provided via Websockets and the VoIP calls are realised through webRTC. Unlike other VoIP services, the voice data is not transmitted via the Server. The Server only negotiates a 2p2p Mesh-Network between all Teammates, the data then is transmitted directly to the peer.
 
 **Lessions Learned**: 
--Noted Disadvantage for this has been, if one Client for example wasnt able to fetch its own Champion Mastery Skill Level, it won't get distributed to the other Peers, so Placeholder had to be implemented.
 
--Clear Advantage was, that the Traffic/Memory/CPU requirement for my hoster are ridicusly low, as the Server only Searches for Teams and Negotiates the Calls. So its pretty fast and lightweight. 
+-Noted Disadvantage for this has been, if one Client for example wasnt able to fetch its own data (e.g own Champion Mastery Skill Level), it won't get distributed to the other Peers, so Placeholders had to be implemented.
+- The requirements for CPU/Traffic are quite higher then a Classic Client2Server architecture.
+-But clear Advantage is, that the Traffic/Memory/CPU requirement for my hoster are ridicusly low, as the Server only Searches for Teams and Negotiates the Calls. So its pretty fast and lightweight. 
 
 
 
