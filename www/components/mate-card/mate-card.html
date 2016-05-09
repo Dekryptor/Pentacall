@@ -100,8 +100,15 @@
                 this.champion = call.metadata.profileIconId;
                 this.username = call.metadata.name;
                 this.level = call.metadata.summonerLevel;
-                this.setChampPic(call.metadata.inGame.champion);
-                this.setMastery(region, call.metadata.inGame.summonerId,call.metadata.inGame.championId);
+
+                try{
+                    this.setChampPic(call.metadata.inGame.champion);
+                    this.setMastery(region, call.metadata.inGame.summonerId,call.metadata.inGame.championId);
+                }
+                catch (e){
+                    console.log("Couldnt get Champion Mastery data : " +e );
+                }
+
 
                 call.on('stream', function (remoteStream) {
                     //Put this into the Intigrated

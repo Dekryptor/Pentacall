@@ -6,7 +6,7 @@ var s;
 window.addEventListener("load",function() {
     console.log(configuration);
     var socket = io(configuration.hostname+":"+configuration.port);
-    var peer = new Peer(null, {host: configuration.hostname,"port":configuration.port, path: "/voip", debug: 3});
+    var peer = new Peer(null, {host: configuration.hostname,"port":configuration.port, path: "/voip"});
     var toast = document.querySelector("paper-toast");
     var mediaStream;
 
@@ -227,17 +227,15 @@ window.addEventListener("load",function() {
                 ownUserData.inGame = e;
                 document.querySelector("user-card").setChampPic(e.champion);
                 document.querySelector("user-card").setMastery(registerBlob.server,e.summonerId,e.championId);
-
-                return;
             }
-            if(peer.connections[e.callID]!=null){
-                
-            }else{
+        });
+        
+        
+        mateArray.forEach(function (e,i,a) {
+            if(e.callID != peer.id && peer.connections[e.callID]==null){
                 console.log("[Info] Going to Call somebody");
                 peer.call(e.callID, mediaStream,{metadata:ownUserData});
             }
-
-
         });
 
     });
