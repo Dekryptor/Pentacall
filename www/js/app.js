@@ -195,6 +195,7 @@ window.addEventListener("load",function() {
 
     peer.on('call',  function(call) {
         //We've been Called
+        document.querySelector("info-card").$.text.textContent="";
         console.log("[Info] Sombody has called us");
 
         if(peer.connections[call.peer].length==1){
